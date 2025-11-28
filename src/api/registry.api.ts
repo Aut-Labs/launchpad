@@ -18,7 +18,7 @@ export const createHub = createAsyncThunk(
     const roleIds = requestBody.metadata.properties.rolesSets[0].roles.map(
       (role) => role.id
     );
-    const overrides = await getOverrides(sdk.signer);
+    const overrides = await getOverrides(sdk.signer, undefined, 10000000);
     const response = await sdk.hubRegistry.deployHub(
       roleIds,
       requestBody.metadata.properties.market as number,
