@@ -85,19 +85,11 @@ const startFromScratch = true;
 const IntegrateStepper = (props) => {
   // const startFromScratch = useSelector(StartFromScratch);
   const [instance, setInstance] = useState<StepWizardChildProps & any>();
-  const [steps, setSteps] = useState([]);
+  const steps = startFromScratch ? defaultSteps.slice(1) : defaultSteps;
 
   useEffect(() => {
     props.instance(() => instance);
   }, [instance]);
-
-  useEffect(() => {
-    if (startFromScratch) {
-      setSteps(defaultSteps.slice(1));
-    } else {
-      setSteps(defaultSteps);
-    }
-  }, []);
 
   return steps?.length && <Stepper instance={setInstance} steps={steps} />;
 };

@@ -1,9 +1,7 @@
-import axios from "axios";
-import { environment } from "./environment";
 import { NetworkConfig } from "./ProviderFactory/network.config";
+import { getNetworkConfigs } from "./network-configs";
+import { environment } from "./environment";
 
 export const getAppConfig = (): Promise<NetworkConfig[]> => {
-  return axios
-    .get(`${environment.apiUrl}/aut/config/network/${environment.networkEnv}`)
-    .then((r) => r.data);
+  return Promise.resolve(getNetworkConfigs(environment.networkEnv));
 };

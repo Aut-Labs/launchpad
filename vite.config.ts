@@ -14,6 +14,10 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
+      "vite-plugin-node-polyfills/shims/global": path.resolve(
+        __dirname,
+        "node_modules/vite-plugin-node-polyfills/shims/global"
+      ),
       "@assets": path.resolve(__dirname, "./src/assets"),
       "@auth": path.resolve(__dirname, "./src/auth"),
       "@api": path.resolve(__dirname, "./src/api"),
@@ -21,7 +25,20 @@ export default defineConfig({
       "@store": path.resolve(__dirname, "./src/redux"),
       "@hooks": path.resolve(__dirname, "./src/hooks"),
       "@theme": path.resolve(__dirname, "./src/theme"),
-      "@components": path.resolve(__dirname, "./src/components")
+      "@components": path.resolve(__dirname, "./src/components"),
+      "@lib": path.resolve(__dirname, "./src/lib"),
+      "@aut-labs/connector": path.resolve(__dirname, "./src/lib/connector"),
+      "@aut-labs/d-aut": path.resolve(__dirname, "./src/lib/d-aut"),
+      "@aut-labs/sdk": path.resolve(__dirname, "./src/lib/sdk/src/index.ts"),
+      "@sdk-utils": path.resolve(__dirname, "./src/lib/sdk/src/utils"),
+      "@sdk-models": path.resolve(__dirname, "./src/lib/sdk/src/models"),
+      "@sdk-services": path.resolve(__dirname, "./src/lib/sdk/src/services"),
+      "@sdk-contracts": path.resolve(__dirname, "./src/lib/sdk/src/contracts"),
+      "@aut-labs/abi-types": path.resolve(
+        __dirname,
+        "../contracts/types/ethers-contracts"
+      ),
+      ethers: path.resolve(__dirname, "./node_modules/ethers")
     }
   },
   build: {

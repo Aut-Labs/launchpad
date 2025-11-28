@@ -12,7 +12,7 @@ import { useAppDispatch } from "@store/store.model";
 import { AutTextField } from "@theme/field-text-styles";
 import { countWords } from "@utils/helpers";
 import { toBase64 } from "@utils/to-base-64";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { useSelector } from "react-redux";
 
 const errorTypes = {
@@ -51,7 +51,7 @@ const FormStackWrapper = styled("div")(({ theme }) => ({
 const CommunityInfoStep = (props: StepperChildProps) => {
   const dispatch = useAppDispatch();
   const { name, image, description } = useSelector(IntegrateCommunity);
-  const { control, handleSubmit, getValues, watch, formState } = useForm({
+  const { control, handleSubmit, getValues, formState } = useForm({
     mode: "onChange",
     defaultValues: {
       name,
@@ -60,7 +60,10 @@ const CommunityInfoStep = (props: StepperChildProps) => {
     }
   });
 
-  const values = watch();
+  const imageValue = useWatch({
+    control,
+    name: "image"
+  });
 
   const updateState = () => {
     const values = getValues();
@@ -181,7 +184,7 @@ const CommunityInfoStep = (props: StepperChildProps) => {
       />
       <StepperButton
         label="Next"
-        disabled={!formState.isValid || !values.image}
+        disabled={!formState.isValid || !imageValue}
       />
     </StepWrapper>
   );

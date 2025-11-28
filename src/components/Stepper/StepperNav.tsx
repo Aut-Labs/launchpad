@@ -96,13 +96,13 @@ const DotWrapper = styled("div")(({ theme }) => ({
 }));
 
 const StepperNav = (props: StepperNavProps) => {
-  const dots = [];
-  for (let i = 1; i <= props.totalSteps; i += 1) {
+  const dots = Array.from({ length: props.totalSteps }, (_, index) => {
+    const i = index + 1;
     const isActive = props.currentStep === i;
     const isComplete = props.currentStep > i;
     const { title } = props.steps[i - 1];
 
-    dots.push(
+    return (
       <Fragment key={`nav-step-top-${i}`}>
         <Dot
           key={`nav-step-${i}`}
@@ -129,7 +129,7 @@ const StepperNav = (props: StepperNavProps) => {
         {/* {props.totalSteps !== i && <StepperLine key={`nav-stepper-line-${i}`} />} */}
       </Fragment>
     );
-  }
+  });
 
   return (
     <NavWrapper maxWidth="lg">
